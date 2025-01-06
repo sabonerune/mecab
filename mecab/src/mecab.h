@@ -335,7 +335,7 @@ enum {
 extern "C" {
 #endif
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(MECAB_LINK_STATIC)
 #include <windows.h>
 #  ifdef DLL_EXPORT
 #    define MECAB_DLL_EXTERN  __declspec(dllexport)

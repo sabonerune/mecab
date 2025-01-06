@@ -82,8 +82,8 @@
 #endif
 
 #ifdef _WIN32
-#ifdef __GNUC__
 #define WPATH_FORCE(path) (MeCab::Utf8ToWide(path).c_str())
+#ifdef __GNUC__
 #define WPATH(path) (path)
 #else
 #define WPATH(path) WPATH_FORCE(path)
