@@ -365,6 +365,17 @@ bool load_dictionary_resource(Param *param) {
       }
     }
   }
+#elif defined(__linux__) || defined(__CYGWIN__)
+  if (rcfile.empty()) {
+    const char procfs[] = "/proc/self/exe";
+    char *exepath = ::realpath(procfs, NULL);
+    if(exepath != NULL) {
+      std::string exedir(exepath);
+      remove_filename(&exedir);
+      rcfile = create_filename(exedir, "mecabrc");
+    }
+    free(exepath);
+  }
 #endif
 
   if (rcfile.empty()) {
