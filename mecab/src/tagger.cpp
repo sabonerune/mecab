@@ -1152,6 +1152,11 @@ int mecab_do(int argc, char **argv) {
     return EXIT_SUCCESS;
   }
 
+  if (!load_rcfile(&param)){
+    std::cout << param.what() << std::endl;
+    return EXIT_SUCCESS;
+  }
+
   if (!load_dictionary_resource(&param)) {
     std::cout << param.what() << std::endl;
     return EXIT_SUCCESS;

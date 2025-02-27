@@ -289,7 +289,7 @@ int load_request_type(const Param &param) {
   return request_type;
 }
 
-bool load_dictionary_resource(Param *param) {
+bool load_rcfile(Param *param) {
   std::string rcfile = param->get<std::string>("rcfile");
 
 #ifdef HAVE_GETENV
@@ -382,6 +382,11 @@ bool load_dictionary_resource(Param *param) {
   remove_filename(&rcfile);
   replace_string(&dicdir, "$(rcpath)", rcfile);
   param->set<std::string>("dicdir", dicdir, true);
+  return true;
+}
+
+bool load_dictionary_resource(Param *param) {
+  std::string dicdir = param->get<std::string>("dicdir");
   dicdir = create_filename(dicdir, DICRC);
 
   if (!param->load(dicdir.c_str())) {

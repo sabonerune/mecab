@@ -108,6 +108,8 @@ bool file_exists(const char *filename);
 
 int load_request_type(const Param &param);
 
+bool load_rcfile(Param *);
+
 bool load_dictionary_resource(Param *);
 
 bool escape_csv_element(std::string *w);
